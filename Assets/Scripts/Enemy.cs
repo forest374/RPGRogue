@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
-    protected override void Attack()
+    public override void Attack()
     {
-
+        int atk = m_basisStatus.ATK + m_equipment.ATK;
+        BattleManager.Instance.EnemyAttack(atk);
     }
     protected override void Defence()
     {
-        throw new System.NotImplementedException();
+
     }
     protected override void Skill()
     {
-        throw new System.NotImplementedException();
+
     }
     public override void Damege(int damege)
     {

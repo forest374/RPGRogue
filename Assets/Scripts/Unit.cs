@@ -4,20 +4,37 @@ using UnityEngine;
 
 public abstract class Unit : MonoBehaviour
 {
-    [SerializeField]
-    protected UnitStatus m_status = default;
-    protected UnitStatus m_changedValue = default;
+    [SerializeField] [Header("基本ステータス")]
+    protected UnitStatus m_basisStatus = default;
+    protected int m_currentHp = default;
+    protected int m_currentMp = default;
+    [Header("装備品の合計値")]
+    protected UnitStatus m_equipment = default;
 
 
     protected virtual void Start()
     {
+        m_currentHp = m_basisStatus.HP;
+        m_currentMp = m_basisStatus.MP;
+        Debug.Log(m_currentHp);
     }
-    protected abstract void Attack();
+    public abstract void Attack();
     protected abstract void Defence();
     protected abstract void Skill();
 
-    public virtual void Damege(int damege)
+    public virtual void Damege(int atk)
     {
-        m_status.HP -= m_status.DEF - damege;
+        int damege = atk - (m_basisStatus.DEF + m_equipment.DEF);
+        if (damege <= 0)
+        {
+            damege = 1;
+        }
+        m_currentHp -= damege;
+
+        Debug.Log(name + "は" + damege + "のダメージを受けた");
+        if (m_currentHp <= 0)
+        {
+            Debug.Log(name + "は倒れた");
+        }
     }
 }

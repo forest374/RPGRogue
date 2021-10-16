@@ -10,6 +10,7 @@ public class BattleManager : MonoBehaviour
     Unit m_player = default;
     [SerializeField]
     Unit[] m_enemies = default;
+    [SerializeField]
     public int SelectEnemy { get; set; } = 0;
     private void Start()
     {
