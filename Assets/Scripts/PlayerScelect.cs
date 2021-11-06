@@ -6,14 +6,12 @@ public class PlayerScelect : MonoBehaviour
 {
     [SerializeField]
     GameObject m_circle = default;
-    int m_enemyNum = 0;
     int m_selectNum = 0;
 
     public int SelectNum { get => m_selectNum; }
 
     private void Start()
     {
-        m_enemyNum = BattleManager.Instance.EnemyNum;
     }
 
     private void Update()
@@ -33,9 +31,15 @@ public class PlayerScelect : MonoBehaviour
         }
     }
 
+    public void ResetSelectNum()
+    {
+        m_selectNum = 0;
+        m_circle.transform.position = BattleManager.Instance.Enemies[m_selectNum].transform.position;
+    }
+
     void AddSelectNum()
     {
-        if (m_selectNum + 1 >= m_enemyNum)
+        if (m_selectNum + 1 >= BattleManager.Instance.Enemies.Count)
         {
             return;
         }

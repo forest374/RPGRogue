@@ -11,12 +11,13 @@ public abstract class Unit : MonoBehaviour
     [Header("装備品の合計値")]
     protected UnitStatus m_equipment = default;
 
+    public int m_time = 100;
+
 
     protected virtual void Start()
     {
         m_currentHp = m_basisStatus.HP;
         m_currentMp = m_basisStatus.MP;
-        Debug.Log(m_currentHp);
     }
     public abstract void Attack();
     protected abstract void Defence();

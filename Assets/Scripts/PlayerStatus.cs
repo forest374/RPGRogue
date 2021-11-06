@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 
 
-public enum AbnormalStates
+public enum AbnormalState
 {
     毒 = 0b1000, 火傷 = 0b0100, 眠り = 0b0010, 麻痺 = 0b0001
 }
 
 [System.Serializable]
-public struct UnitStatus
+public struct PlayerStatus
 {
     public int HP;
     public int MP;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
+    public int MyNum { get; set; } = default;
     public override void Attack()
     {
         int atk = m_basisStatus.ATK + m_equipment.ATK;
@@ -20,5 +21,10 @@ public class Enemy : Unit
     public override void Damege(int damege)
     {
         base.Damege(damege);
+        if (m_currentHp <= 0)
+        {
+            BattleManager.Instance.EnemyDead(this);
+            Destroy(this.gameObject);
+        }
     }
 }
